@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة المعلم | المتفوقين</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/design-system.css">
+<style>
+  .panel{padding:1.5rem;}
+  .panel-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:1.2rem; flex-wrap:wrap; gap:.6rem;}
+  .panel-head h3{color:var(--navy); font-size:1.05rem;}
+  .panel-head a{font-size:.82rem; color:var(--sky); font-weight:700;}
+
+  table{width:100%; border-collapse:collapse;}
+  th,td{text-align:right; padding:.8rem .6rem; font-size:.88rem; border-bottom:1px solid var(--line);}
+  th{color:var(--text-muted); font-weight:700; font-size:.78rem;}
+  tr:last-child td{border-bottom:none;}
+
+  .quick-actions{display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:1.5rem;}
+  @media (max-width:900px){ .quick-actions{grid-template-columns:1fr 1fr;} }
+  .qa-card{padding:1.3rem; text-align:center; display:flex; flex-direction:column; align-items:center; gap:.6rem;}
+  .qa-card .ic{width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem;}
+  .qa-card span{font-size:.85rem; font-weight:700; color:var(--navy);}
+
+  .grid-2{display:grid; grid-template-columns:1.4fr 1fr; gap:1.5rem; margin-bottom:1.5rem;}
+  @media (max-width:1050px){ .grid-2{grid-template-columns:1fr;} }
+
+  .bar-chart{display:flex; align-items:flex-end; gap:.7rem; height:160px; padding-top:1rem;}
+  .bar{flex:1; background:linear-gradient(180deg, var(--sky), var(--navy)); border-radius:8px 8px 0 0; position:relative;}
+  .bar span{position:absolute; bottom:-22px; right:0; left:0; text-align:center; font-size:.7rem; color:var(--text-muted);}
+
+  .msg-row{display:flex; gap:.8rem; padding:.8rem 0; border-bottom:1px solid var(--line);}
+  .msg-row:last-child{border-bottom:none;}
+  .msg-row .av{width:38px; height:38px; border-radius:50%; background:var(--gray-2); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .msg-row b{display:block; font-size:.86rem;}
+  .msg-row span{font-size:.76rem; color:var(--text-muted);}
+</style>
+</head>
+<body>
+<div class="dash">
+  <aside class="dash-sidebar" id="sidebar">
+    <div class="brand">
+      <img src="assets/logo.svg" alt="المتفوقين" style="width:40px;height:40px;">
+      <div class="brand-text"><b>المتفوقين</b><span>لوحة المعلم</span></div>
+    </div>
+    <nav class="dash-nav">
+      <a href="#" class="active">🏠 نظرة عامة</a>
+      <a href="#">🎬 رفع فيديوهات</a>
+      <a href="#">📄 رفع ملفات PDF</a>
+      <a href="#">📝 الواجبات</a>
+      <a href="#">🗂️ بنك الأسئلة</a>
+      <a href="#">📡 الحصص المباشرة</a>
+      <div class="group-label">إدارة</div>
+      <a href="#">✅ الحضور</a>
+      <a href="#">📊 التحليلات</a>
+      <a href="#">💰 تقارير الدخل</a>
+      <a href="#">💬 الرسائل</a>
+      <a href="#">👩‍🎓 إدارة الطلاب</a>
+      <div class="group-label">حساب</div>
+      <a href="index.html">↩ الرئيسية العامة</a>
+    </nav>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-topbar">
+      <button class="menu-btn" id="menuBtn" style="display:none;">☰</button>
+      <div class="dash-search"><span>🔍</span><input placeholder="ابحث في طلابك أو دروسك..."></div>
+      <div class="dash-user">
+        <button class="icon-btn">🔔<span class="dot"></span></button>
+        <div class="avatar">هـ</div>
+      </div>
+    </div>
+
+    <div class="stat-grid" style="margin-bottom:1.5rem;">
+      <div class="card stat-card"><div class="top"><span class="ic badge-sky">👩‍🎓</span></div><b>1,842</b><span>إجمالي الطلاب</span></div>
+      <div class="card stat-card"><div class="top"><span class="ic badge-orange">🎬</span></div><b>186</b><span>فيديو مرفوع</span></div>
+      <div class="card stat-card"><div class="top"><span class="ic badge-green">💰</span></div><b>42,300 ج.م</b><span>دخل هذا الشهر</span></div>
+      <div class="card stat-card"><div class="top"><span class="ic badge-navy">⭐</span></div><b>4.9 / 5</b><span>تقييم الطلاب</span></div>
+    </div>
+
+    <div class="quick-actions">
+      <button class="card qa-card"><span class="ic badge-sky">🎬</span><span>رفع فيديو جديد</span></button>
+      <button class="card qa-card"><span class="ic badge-orange">📄</span><span>رفع ملزمة PDF</span></button>
+      <button class="card qa-card"><span class="ic badge-green">🧾</span><span>إنشاء امتحان</span></button>
+      <button class="card qa-card"><span class="ic badge-navy">📡</span><span>بدء حصة مباشرة</span></button>
+    </div>
+
+    <div class="grid-2">
+      <div class="card panel">
+        <div class="panel-head"><h3>📊 نشاط الطلاب هذا الأسبوع</h3></div>
+        <div class="bar-chart">
+          <div class="bar" style="height:55%"><span>سبت</span></div>
+          <div class="bar" style="height:70%"><span>أحد</span></div>
+          <div class="bar" style="height:45%"><span>إثنين</span></div>
+          <div class="bar" style="height:85%"><span>ثلاثاء</span></div>
+          <div class="bar" style="height:60%"><span>أربعاء</span></div>
+          <div class="bar" style="height:40%"><span>خميس</span></div>
+          <div class="bar" style="height:30%"><span>جمعة</span></div>
+        </div>
+      </div>
+      <div class="card panel">
+        <div class="panel-head"><h3>💬 آخر الرسائل</h3><a href="#">عرض الكل</a></div>
+        <div class="msg-row"><span class="av">👦</span><div><b>محمود سعيد</b><span>مش فاهم درس الأكسدة والاختزال...</span></div></div>
+        <div class="msg-row"><span class="av">👧</span><div><b>نور طارق</b><span>ممكن حضرتك تراجعلي درجة الواجب؟</span></div></div>
+        <div class="msg-row"><span class="av">👨‍👩‍👧</span><div><b>ولي أمر - عمر خالد</b><span>عايز أعرف مواعيد الامتحانات القادمة.</span></div></div>
+      </div>
+    </div>
+
+    <div class="card panel">
+      <div class="panel-head"><h3>🎬 آخر المحتوى المرفوع</h3><a href="#">عرض الكل</a></div>
+      <table>
+        <thead><tr><th>العنوان</th><th>النوع</th><th>الصف</th><th>المشاهدات</th><th>الحالة</th></tr></thead>
+        <tbody>
+          <tr><td>الأحماض والقواعد — الجزء 3</td><td>🎬 فيديو</td><td>3 إعدادي</td><td>1,204</td><td><span class="badge badge-green">منشور</span></td></tr>
+          <tr><td>ملزمة: موازنة المعادلات</td><td>📄 PDF</td><td>2 إعدادي</td><td>860</td><td><span class="badge badge-green">منشور</span></td></tr>
+          <tr><td>امتحان الوحدة الثانية</td><td>🧾 امتحان</td><td>3 إعدادي</td><td>—</td><td><span class="badge badge-orange">مسودة</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<script>
+document.getElementById('menuBtn')?.addEventListener('click', () => document.getElementById('sidebar').classList.toggle('open'));
+</script>
+</body>
+</html>

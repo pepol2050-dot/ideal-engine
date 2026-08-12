@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0F2D5C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>محتوى مرحلتي | المتفوقين</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/design-system.css">
+<style>
+  .grade-banner{
+    background:linear-gradient(135deg, var(--navy), var(--navy-2)); color:#fff; border-radius:var(--radius-lg);
+    padding:1.8rem 2rem; margin-bottom:2rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+  }
+  .grade-banner h2{font-size:1.4rem; margin-bottom:.3rem;}
+  .grade-banner p{color:rgba(255,255,255,.75); font-size:.9rem;}
+  .filters{display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:2rem; align-items:center;}
+  .chip{padding:.55rem 1.15rem; border-radius:999px; border:1px solid var(--line); background:#fff; color:var(--text-muted); font-size:.85rem; font-weight:700;}
+  .chip.active{background:var(--sky); color:#fff; border-color:var(--sky);}
+  .content-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(270px,1fr)); gap:1.3rem;}
+  .content-card{padding:0; overflow:hidden;}
+  .content-card .media{aspect-ratio:16/9; background:var(--gray-2); display:flex; align-items:center; justify-content:center; font-size:2.2rem; overflow:hidden;}
+  .content-card .media img{width:100%; height:100%; object-fit:cover;}
+  .content-card .media iframe{width:100%; height:100%; border:none;}
+  .content-card .body{padding:1.1rem 1.2rem;}
+  .content-card .body b{display:block; font-size:.98rem; margin-bottom:.3rem; color:var(--navy);}
+  .content-card .body p{font-size:.82rem; color:var(--text-muted); margin-bottom:.7rem; min-height:2.4em;}
+  .content-card .foot{display:flex; align-items:center; justify-content:space-between;}
+  .empty-state{text-align:center; padding:4rem 1rem; color:var(--text-muted);}
+  .empty-state .ic{font-size:3rem; margin-bottom:1rem;}
+  .loading-state{text-align:center; padding:3rem 1rem; color:var(--text-muted);}
+  .refresh-btn{margin-inline-start:auto;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap site-nav">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.svg" alt="المتفوقين">
+      <div class="brand-text"><b>المتفوقين</b><span id="userName">محتوى الطالب</span></div>
+    </a>
+    <div class="dash-user">
+      <span class="badge badge-sky" id="gradeBadge">—</span>
+      <button class="btn btn-outline btn-sm" id="logoutBtn">تسجيل الخروج</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap has-bottom-nav" style="padding:2rem 24px 4rem;">
+  <div class="grade-banner">
+    <div>
+      <h2 id="welcomeText">أهلًا بيك 👋</h2>
+      <p>ده كل المحتوى المرفوع خصيصًا لمرحلتك — بيتحدّث أول ما المعلم يضيف حاجة جديدة في الجدول.</p>
+    </div>
+  </div>
+
+  <div class="filters" id="typeFilters">
+    <button class="chip active" data-type="all">الكل</button>
+    <button class="chip" data-type="فيديو">🎬 فيديوهات</button>
+    <button class="chip" data-type="صورة">🖼️ صور</button>
+    <button class="chip" data-type="شرح">📖 شروحات</button>
+    <button class="chip" data-type="PDF">📄 ملفات PDF</button>
+    <button class="btn btn-outline btn-sm refresh-btn" id="refreshBtn">↻ تحديث</button>
+  </div>
+
+  <div class="loading-state" id="loadingState">⏳ جاري تحميل المحتوى...</div>
+  <div class="content-grid" id="contentGrid"></div>
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <div class="ic">📭</div>
+    <b>لسه معلمك ما رفعش محتوى لمرحلتك</b>
+    <p>دوسي "تحديث" بعد شوية، هيظهر هنا فور ما يتم رفعه.</p>
+  </div>
+</main>
+
+<nav class="bottom-nav">
+  <a href="index.html"><span class="ic">🏠</span><span>الرئيسية</span></a>
+  <a href="content.html" class="active"><span class="ic">📚</span><span>مجموعتي</span></a>
+  <a href="#" id="fabRefresh" class="fab"><span class="ic">↻</span></a>
+  <a href="#" id="navLogout"><span class="ic">🚪</span><span>خروج</span></a>
+</nav>
+
+<script src="assets/site-config.js"></script>
+<script>
+const session = JSON.parse(localStorage.getItem('motafawqeen_session') || 'null');
+if(!session || session.role !== 'student'){ window.location.href = 'login.html'; }
+
+document.getElementById('userName').textContent = 'أهلًا ' + session.name;
+document.getElementById('gradeBadge').textContent = session.grade;
+document.getElementById('welcomeText').textContent = `أهلًا ${session.name} 👋 — محتوى ${session.grade}`;
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  localStorage.removeItem('motafawqeen_session');
+  window.location.href = 'login.html';
+});
+
+function youtubeEmbed(url){
+  const m = (url || '').match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([\w-]{11})/);
+  return m ? `https://www.youtube.com/embed/${m[1]}` : null;
+}
+
+let allItems = [];
+let activeFilter = 'all';
+
+async function loadContent(){
+  document.getElementById('loadingState').style.display = 'block';
+  document.getElementById('loadingState').textContent = '⏳ جاري تحميل المحتوى...';
+  try{
+    const library = await fetchLibrary();
+    allItems = library.filter(i => i.grade === session.grade);
+    document.getElementById('loadingState').style.display = 'none';
+    renderContent();
+  } catch(err){
+    document.getElementById('loadingState').textContent = '⚠️ تعذّر تحميل المحتوى، تأكدي إن الشيت متظبط صح. (' + err.message + ')';
+  }
+}
+
+function renderContent(){
+  const items = allItems.filter(i => activeFilter === 'all' || i.type === activeFilter);
+  const grid = document.getElementById('contentGrid');
+  const empty = document.getElementById('emptyState');
+  grid.innerHTML = '';
+  if(items.length === 0){ empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+
+  items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'card content-card';
+    let mediaHtml = '';
+    const yt = item.type === 'فيديو' ? youtubeEmbed(item.link) : null;
+    if(yt){
+      mediaHtml = `<div class="media"><iframe src="${yt}" allowfullscreen></iframe></div>`;
+    } else if(item.type === 'صورة'){
+      mediaHtml = `<div class="media"><img src="${item.link}" alt="${item.title}" onerror="this.parentElement.textContent='🖼️'"></div>`;
+    } else {
+      const icons = {'فيديو':'🎬','PDF':'📄','شرح':'📖'};
+      mediaHtml = `<div class="media">${icons[item.type] || '📁'}</div>`;
+    }
+    card.innerHTML = `
+      ${mediaHtml}
+      <div class="body">
+        <b>${item.title}</b>
+        <p>${item.description || ''}</p>
+        <div class="foot">
+          <span class="badge badge-navy">${item.type}</span>
+          <a href="${item.link}" target="_blank" class="btn btn-outline btn-sm">فتح ⟵</a>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+document.querySelectorAll('#typeFilters .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('#typeFilters .chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    activeFilter = chip.dataset.type;
+    renderContent();
+  });
+});
+document.getElementById('refreshBtn').addEventListener('click', loadContent);
+document.getElementById('fabRefresh').addEventListener('click', (e) => { e.preventDefault(); loadContent(); });
+document.getElementById('navLogout').addEventListener('click', (e) => {
+  e.preventDefault();
+  localStorage.removeItem('motafawqeen_session');
+  window.location.href = 'login.html';
+});
+
+loadContent();
+setInterval(loadContent, 60000); // تحديث تلقائي كل دقيقة
+</script>
+</body>
+</html>

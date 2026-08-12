@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة ولي الأمر | المتفوقين</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/design-system.css">
+<style>
+  .panel{padding:1.5rem;}
+  .panel-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:1.2rem;}
+  .panel-head h3{color:var(--navy); font-size:1.05rem;}
+  .child-switch{display:flex; gap:.7rem; margin-bottom:1.5rem; flex-wrap:wrap;}
+  .child-chip{display:flex; align-items:center; gap:.6rem; padding:.6rem 1.1rem; border-radius:999px; background:#fff; border:1px solid var(--line); font-weight:700; font-size:.88rem; color:var(--navy);}
+  .child-chip.active{background:var(--navy); color:#fff; border-color:var(--navy);}
+  .grid-2{display:grid; grid-template-columns:1.3fr 1fr; gap:1.5rem; margin-bottom:1.5rem;}
+  @media (max-width:1050px){ .grid-2{grid-template-columns:1fr;} }
+  .note-row{padding:.9rem 0; border-bottom:1px solid var(--line);}
+  .note-row:last-child{border-bottom:none;}
+  .note-row b{font-size:.88rem; display:block; margin-bottom:.2rem;}
+  .note-row span{font-size:.78rem; color:var(--text-muted);}
+  table{width:100%; border-collapse:collapse;}
+  th,td{text-align:right; padding:.75rem .5rem; font-size:.86rem; border-bottom:1px solid var(--line);}
+  th{color:var(--text-muted); font-weight:700; font-size:.76rem;}
+  tr:last-child td{border-bottom:none;}
+  .subject-bar{margin-bottom:1.1rem;}
+  .subject-bar .row{display:flex; justify-content:space-between; font-size:.85rem; margin-bottom:.4rem;}
+</style>
+</head>
+<body>
+<div class="dash">
+  <aside class="dash-sidebar" id="sidebar">
+    <div class="brand">
+      <img src="assets/logo.svg" alt="المتفوقين" style="width:40px;height:40px;">
+      <div class="brand-text"><b>المتفوقين</b><span>لوحة ولي الأمر</span></div>
+    </div>
+    <nav class="dash-nav">
+      <a href="#" class="active">🏠 نظرة عامة</a>
+      <a href="#">✅ الحضور</a>
+      <a href="#">📊 الدرجات</a>
+      <a href="#">📝 الواجبات</a>
+      <a href="#">🧾 نتائج الامتحانات</a>
+      <a href="#">🗒️ ملاحظات المعلم</a>
+      <a href="#">📅 التقارير الشهرية</a>
+      <a href="#">📈 مخططات التقدّم</a>
+      <div class="group-label">حساب</div>
+      <a href="index.html">↩ الرئيسية العامة</a>
+    </nav>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-topbar">
+      <button class="menu-btn" id="menuBtn" style="display:none;">☰</button>
+      <div class="dash-search"><span>🔍</span><input placeholder="ابحث في تقارير ابنك..."></div>
+      <div class="dash-user">
+        <button class="icon-btn">🔔<span class="dot"></span></button>
+        <div class="avatar">ك</div>
+      </div>
+    </div>
+
+    <div class="child-switch">
+      <span class="child-chip active">👦 عمر خالد — 3 إعدادي</span>
+      <span class="child-chip">👧 حبيبة خالد — 5 ابتدائي</span>
+    </div>
+
+    <div class="stat-grid" style="margin-bottom:1.5rem;">
+      <div class="card stat-card"><div class="top"><span class="ic badge-green">✅</span></div><b>96%</b><span>نسبة الحضور</span></div>
+      <div class="card stat-card"><div class="top"><span class="ic badge-sky">📊</span></div><b>87%</b><span>متوسط الدرجات</span></div>
+      <div class="card stat-card"><div class="top"><span class="ic badge-orange">📝</span></div><b>2</b><span>واجبات متأخرة</span></div>
+      <div class="card stat-card"><div class="top"><span class="ic badge-navy">🧾</span></div><b>18/20</b><span>آخر امتحان</span></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card panel">
+        <div class="panel-head"><h3>📈 الأداء حسب المادة</h3></div>
+        <div class="subject-bar">
+          <div class="row"><span>🧪 الكيمياء</span><span>91%</span></div>
+          <div class="progress"><span style="width:91%"></span></div>
+        </div>
+        <div class="subject-bar">
+          <div class="row"><span>🔬 العلوم</span><span>83%</span></div>
+          <div class="progress"><span style="width:83%"></span></div>
+        </div>
+        <div class="subject-bar" style="margin-bottom:0;">
+          <div class="row"><span>📚 الحضور والمشاركة</span><span>96%</span></div>
+          <div class="progress"><span style="width:96%"></span></div>
+        </div>
+      </div>
+      <div class="card panel">
+        <div class="panel-head"><h3>🗒️ ملاحظات المعلمة</h3></div>
+        <div class="note-row"><b>ممتاز في التفاعلات الكيميائية</b><span>د. هدير يوسف — منذ يومين</span></div>
+        <div class="note-row"><b>محتاج مذاكرة زيادة في وحدة الخلية</b><span>د. هدير يوسف — منذ 5 أيام</span></div>
+        <div class="note-row"><b>مشاركة ممتازة في الحصة المباشرة</b><span>د. هدير يوسف — الأسبوع الماضي</span></div>
+      </div>
+    </div>
+
+    <div class="card panel">
+      <div class="panel-head"><h3>🧾 آخر نتائج الامتحانات</h3></div>
+      <table>
+        <thead><tr><th>الامتحان</th><th>المادة</th><th>التاريخ</th><th>الدرجة</th></tr></thead>
+        <tbody>
+          <tr><td>امتحان الأحماض والقواعد</td><td>كيمياء</td><td>10 يوليو 2026</td><td><span class="badge badge-green">18 / 20</span></td></tr>
+          <tr><td>امتحان الخلية والأنسجة</td><td>علوم</td><td>2 يوليو 2026</td><td><span class="badge badge-sky">16 / 20</span></td></tr>
+          <tr><td>امتحان منتصف الترم</td><td>علوم وكيمياء</td><td>20 يونيو 2026</td><td><span class="badge badge-green">38 / 40</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<script>
+document.getElementById('menuBtn')?.addEventListener('click', () => document.getElementById('sidebar').classList.toggle('open'));
+document.querySelectorAll('.child-chip').forEach(c => c.addEventListener('click', () => {
+  document.querySelectorAll('.child-chip').forEach(x => x.classList.remove('active'));
+  c.classList.add('active');
+}));
+</script>
+</body>
+</html>

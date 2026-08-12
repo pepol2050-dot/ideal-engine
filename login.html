@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0F2D5C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>تسجيل الدخول | المتفوقين</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/design-system.css">
+<style>
+  body{min-height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(160deg, var(--gray), var(--gray-2));}
+  .login-wrap{width:100%; max-width:420px; padding:2rem;}
+  .login-card{padding:2.2rem;}
+  .login-brand{display:flex; flex-direction:column; align-items:center; text-align:center; margin-bottom:1.6rem;}
+  .login-brand img{width:56px; height:56px; margin-bottom:.8rem;}
+  .login-brand b{color:var(--navy); font-size:1.2rem;}
+  .login-brand span{color:var(--text-muted); font-size:.82rem;}
+  .role-tabs{display:flex; gap:.5rem; background:var(--gray-2); border-radius:999px; padding:.3rem; margin-bottom:1.6rem;}
+  .role-tab{flex:1; text-align:center; padding:.65rem; border-radius:999px; font-weight:700; font-size:.88rem; color:var(--text-muted); border:none; background:none;}
+  .role-tab.active{background:var(--navy); color:#fff;}
+  .form-field{margin-bottom:1.1rem;}
+  .form-field label{display:block; font-size:.85rem; color:var(--text-muted); margin-bottom:.4rem; font-weight:600;}
+  .form-field select, .form-field input{
+    width:100%; background:#fff; border:1px solid var(--line); border-radius:12px; padding:.85rem 1rem;
+    color:var(--text); font-family:'Cairo'; outline:none; transition:border-color .2s; font-size:.95rem;
+  }
+  .form-field select:focus, .form-field input:focus{border-color:var(--sky);}
+  .error-msg{background:rgba(255,90,90,.1); color:#c0392b; font-size:.82rem; padding:.7rem 1rem; border-radius:10px; margin-bottom:1rem; display:none;}
+  .error-msg.show{display:block;}
+  .form-pane{display:none;}
+  .form-pane.active{display:block;}
+  .back-home{display:block; text-align:center; margin-top:1.2rem; font-size:.85rem; color:var(--text-muted);}
+  .setup-note{background:rgba(255,138,0,.1); color:#c96a00; font-size:.76rem; padding:.7rem 1rem; border-radius:10px; margin-bottom:1.2rem; display:none;}
+  .install-banner{
+    display:flex; align-items:center; justify-content:space-between; gap:.8rem;
+    background:rgba(37,169,255,.1); color:var(--navy); font-size:.78rem; font-weight:700;
+    padding:.7rem 1rem; border-radius:12px; margin-bottom:1.2rem;
+  }
+</style>
+</head>
+<body>
+<div class="login-wrap">
+  <div class="card login-card">
+    <div class="login-brand">
+      <img src="assets/logo.svg" alt="المتفوقين">
+      <b>المتفوقين</b>
+      <span>منصة تعليمية متكاملة للعلوم والكيمياء</span>
+    </div>
+
+    <div class="setup-note" id="setupNote">⚠️ لسه ملف الإعدادات (assets/site-config.js) مش متظبط برابط الشيت — راجعي دليل الإعداد.</div>
+
+    <div class="install-banner" id="installBanner" style="display:none;">
+      <span>📲 ثبّتي التطبيق على شاشتك الرئيسية لتجربة أسرع</span>
+      <button type="button" id="installBtn" class="btn btn-orange btn-sm">تثبيت</button>
+    </div>
+
+    <div class="role-tabs">
+      <button class="role-tab active" id="tabStudent">تسجيل دخول طالب</button>
+      <button class="role-tab" id="tabTeacher">تسجيل دخول معلم</button>
+    </div>
+
+    <div class="error-msg" id="errorMsg"></div>
+
+    <form class="form-pane active" id="studentForm">
+      <div class="form-field">
+        <label>الاسم</label>
+        <input type="text" id="studentName" placeholder="اكتب اسمك" required>
+      </div>
+      <div class="form-field">
+        <label>المجموعة / الفصل</label>
+        <input type="text" id="groupSearch" placeholder="اكتبي رقم أو اسم المجموعة للبحث..." style="margin-bottom:.5rem;">
+        <select id="studentGrade" required><option value="">اختر مجموعتك</option></select>
+      </div>
+      <div class="form-field">
+        <label>كلمة المرور</label>
+        <input type="password" id="studentPassword" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn btn-orange btn-block">دخول</button>
+    </form>
+
+    <form class="form-pane" id="teacherForm">
+      <div class="form-field">
+        <label>اختاري اسمك</label>
+        <select id="teacherSelect" required><option value="">اختاري اسمك من القائمة</option></select>
+      </div>
+      <div class="form-field">
+        <label>كلمة المرور</label>
+        <input type="password" id="teacherPassword" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn btn-navy btn-block">دخول لوحة المعلم</button>
+    </form>
+
+    <a href="index.html" class="back-home">↩ العودة للصفحة الرئيسية</a>
+  </div>
+</div>
+
+<script src="assets/site-config.js"></script>
+<script>
+if(SHEET_CSV_URL.startsWith('PASTE')){
+  document.getElementById('setupNote').style.display = 'block';
+}
+
+// تسجيل الـ Service Worker وزرار تثبيت التطبيق
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('service-worker.js').catch(() => {});
+}
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('installBanner').style.display = 'flex';
+});
+document.getElementById('installBtn').addEventListener('click', async () => {
+  if(!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  document.getElementById('installBanner').style.display = 'none';
+});
+window.addEventListener('appinstalled', () => {
+  document.getElementById('installBanner').style.display = 'none';
+});
+
+const tabStudent = document.getElementById('tabStudent');
+const tabTeacher = document.getElementById('tabTeacher');
+const studentForm = document.getElementById('studentForm');
+const teacherForm = document.getElementById('teacherForm');
+const errorMsg = document.getElementById('errorMsg');
+
+function showError(msg){ errorMsg.textContent = msg; errorMsg.classList.add('show'); }
+function hideError(){ errorMsg.classList.remove('show'); }
+
+tabStudent.addEventListener('click', () => {
+  tabStudent.classList.add('active'); tabTeacher.classList.remove('active');
+  studentForm.classList.add('active'); teacherForm.classList.remove('active');
+  hideError();
+});
+tabTeacher.addEventListener('click', () => {
+  tabTeacher.classList.add('active'); tabStudent.classList.remove('active');
+  teacherForm.classList.add('active'); studentForm.classList.remove('active');
+  hideError();
+});
+
+// تعبئة قائمة المجموعات (القيمة = الاسم نفسه، عشان يطابق اللي المعلم هيكتبه في الشيت)
+const gradeSelect = document.getElementById('studentGrade');
+GROUP_CODES.forEach(code => {
+  const label = GROUP_LABELS[code];
+  const opt = document.createElement('option');
+  opt.value = label;
+  opt.textContent = label;
+  gradeSelect.appendChild(opt);
+});
+document.getElementById('groupSearch').addEventListener('input', (e) => {
+  const q = e.target.value.trim();
+  Array.from(gradeSelect.options).forEach(opt => {
+    if(!opt.value){ opt.hidden = false; return; }
+    opt.hidden = q && !opt.textContent.includes(q);
+  });
+});
+
+const teacherSelect = document.getElementById('teacherSelect');
+TEACHER_CODES.forEach(code => {
+  const opt = document.createElement('option');
+  opt.value = code;
+  opt.textContent = TEACHER_LABELS[code];
+  teacherSelect.appendChild(opt);
+});
+
+studentForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  hideError();
+  const name = document.getElementById('studentName').value.trim();
+  const grade = document.getElementById('studentGrade').value;
+  const pass = document.getElementById('studentPassword').value;
+  if(!grade){ showError('من فضلك اختاري مجموعتك.'); return; }
+  if(pass !== STUDENT_PASSWORD){ showError('كلمة المرور غير صحيحة.'); return; }
+  localStorage.setItem('motafawqeen_session', JSON.stringify({role:'student', name: name || 'طالب', grade}));
+  window.location.href = 'content.html';
+});
+
+teacherForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  hideError();
+  const code = document.getElementById('teacherSelect').value;
+  const pass = document.getElementById('teacherPassword').value;
+  if(!code){ showError('من فضلك اختاري اسمك.'); return; }
+  if(pass !== TEACHER_PASSWORD){ showError('كلمة المرور غير صحيحة.'); return; }
+  localStorage.setItem('motafawqeen_session', JSON.stringify({role:'teacher', name: TEACHER_LABELS[code]}));
+  window.location.href = 'teacher-panel.html';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0F2D5C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>لوحة رفع المحتوى | المتفوقين</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/design-system.css">
+<style>
+  .topgrid{display:grid; grid-template-columns:1fr; gap:1.5rem; max-width:960px; margin:0 auto;}
+  .steps{display:flex; flex-direction:column; gap:1rem;}
+  .step{display:flex; gap:1rem; padding:1.2rem; align-items:flex-start;}
+  .step .n{width:34px; height:34px; border-radius:50%; background:var(--sky); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; flex-shrink:0; font-family:'Poppins';}
+  .step b{display:block; margin-bottom:.3rem; color:var(--navy);}
+  .step p{color:var(--text-muted); font-size:.9rem;}
+  .cheat-table{width:100%; border-collapse:collapse; margin-top:.5rem;}
+  .cheat-table th, .cheat-table td{text-align:right; padding:.6rem; font-size:.85rem; border-bottom:1px solid var(--line);}
+  .cheat-table th{color:var(--text-muted); font-weight:700; font-size:.76rem;}
+  .big-cta{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.6rem; background:linear-gradient(135deg, var(--navy), var(--navy-2)); border-radius:var(--radius-lg); color:#fff; flex-wrap:wrap;}
+  .big-cta h3{font-size:1.15rem; margin-bottom:.3rem;}
+  .big-cta p{color:rgba(255,255,255,.75); font-size:.85rem;}
+  .preview-table{width:100%; border-collapse:collapse;}
+  .preview-table th, .preview-table td{text-align:right; padding:.65rem .5rem; font-size:.82rem; border-bottom:1px solid var(--line);}
+  .preview-table th{color:var(--text-muted); font-size:.72rem; font-weight:700;}
+  .status-ok{color:#158a44; font-size:.8rem;}
+  .status-err{color:#c0392b; font-size:.8rem;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap site-nav">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.svg" alt="المتفوقين">
+      <div class="brand-text"><b>المتفوقين</b><span id="userName">لوحة المعلم</span></div>
+    </a>
+    <div class="dash-user">
+      <a href="teacher-dashboard.html" class="btn btn-outline btn-sm">اللوحة الكاملة</a>
+      <button class="btn btn-outline btn-sm" id="logoutBtn">تسجيل الخروج</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap has-bottom-nav" style="padding:2rem 24px 4rem;">
+  <div class="topgrid">
+    <div class="section-head" style="margin-bottom:0;">
+      <div class="eyebrow">رفع المحتوى</div>
+      <h2 style="color:var(--navy); font-size:1.6rem;">إضافة دروس جديدة</h2>
+      <p style="color:var(--text-muted);">الرفع بيتم من خلال جدول Google Sheets عادي — تضيفي سطر جديد، وهيظهر للطلاب فورًا.</p>
+    </div>
+
+    <div class="big-cta">
+      <div>
+        <h3>📊 جدول رفع المحتوى</h3>
+        <p>افتحيه، ضيفي سطر جديد، والموقع هيحدّث نفسه لوحده.</p>
+      </div>
+      <a href="#" id="openSheetBtn" target="_blank" class="btn" style="background:#fff; color:var(--navy);">افتحي الجدول ⟵</a>
+    </div>
+
+    <div class="card">
+      <div class="steps">
+        <div class="step">
+          <span class="n">1</span>
+          <div><b>افتحي الجدول من الزرار اللي فوق</b><p>هيفتحلك Google Sheets عادي، بنفس تصميمه المعروف.</p></div>
+        </div>
+        <div class="step">
+          <span class="n">2</span>
+          <div><b>روحي لأول سطر فاضي، واملأي الأعمدة الخمسة:</b>
+            <table class="cheat-table">
+              <thead><tr><th>المجموعة</th><th>النوع</th><th>العنوان</th><th>الوصف</th><th>الرابط</th></tr></thead>
+              <tbody>
+                <tr><td>المجموعة 1</td><td>فيديو</td><td>الأحماض والقواعد</td><td>شرح مبسط...</td><td>https://youtu.be/xxxx</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">3</span>
+          <div><b>اختاري "المجموعة" و"النوع" من القائمة المنسدلة في الخلية</b><p>عشان تتجنبي أي خطأ إملائي يمنع ظهور الدرس للطلاب الصح.</p></div>
+        </div>
+        <div class="step">
+          <span class="n">4</span>
+          <div><b>خلاص! الدرس هيظهر لطلاب المجموعة دي خلال دقيقة</b><p>الموقع بيحدّث نفسه تلقائيًا كل دقيقة، أو الطالب يدوس زرار "تحديث".</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="padding:1.6rem;">
+      <div class="panel-head" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <h3 style="color:var(--navy); font-size:1rem;">👁️ معاينة آخر المحتوى المنشور</h3>
+        <button class="btn btn-outline btn-sm" id="previewRefresh">↻ تحديث المعاينة</button>
+      </div>
+      <div id="previewStatus" style="margin-bottom:.8rem; font-size:.85rem; color:var(--text-muted);">⏳ جاري التحميل...</div>
+      <div style="overflow-x:auto;">
+        <table class="preview-table">
+          <thead><tr><th>المجموعة</th><th>النوع</th><th>العنوان</th><th>الرابط</th></tr></thead>
+          <tbody id="previewBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<nav class="bottom-nav">
+  <a href="index.html"><span class="ic">🏠</span><span>الرئيسية</span></a>
+  <a href="teacher-dashboard.html"><span class="ic">📊</span><span>الإحصائيات</span></a>
+  <a href="#" id="fabSheet" class="fab"><span class="ic">📝</span></a>
+  <a href="teacher-panel.html" class="active"><span class="ic">📚</span><span>المحتوى</span></a>
+  <a href="#" id="navLogout"><span class="ic">🚪</span><span>خروج</span></a>
+</nav>
+
+<script src="assets/site-config.js"></script>
+<script>
+const session = JSON.parse(localStorage.getItem('motafawqeen_session') || 'null');
+if(!session || session.role !== 'teacher'){ window.location.href = 'login.html'; }
+document.getElementById('userName').textContent = session.name;
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  localStorage.removeItem('motafawqeen_session');
+  window.location.href = 'login.html';
+});
+
+document.getElementById('openSheetBtn').href = SHEET_EDIT_URL.startsWith('PASTE') ? '#' : SHEET_EDIT_URL;
+document.getElementById('fabSheet').addEventListener('click', (e) => {
+  e.preventDefault();
+  if(SHEET_EDIT_URL.startsWith('PASTE')){ alert('لسه رابط الشيت مش متظبط في assets/site-config.js'); return; }
+  window.open(SHEET_EDIT_URL, '_blank');
+});
+document.getElementById('navLogout').addEventListener('click', (e) => {
+  e.preventDefault();
+  localStorage.removeItem('motafawqeen_session');
+  window.location.href = 'login.html';
+});
+
+async function loadPreview(){
+  const status = document.getElementById('previewStatus');
+  const body = document.getElementById('previewBody');
+  status.textContent = '⏳ جاري التحميل...';
+  status.className = '';
+  try{
+    const items = await fetchLibrary();
+    status.innerHTML = `<span class="status-ok">✅ متصل بنجاح — ${items.length} عنصر منشور دلوقتي</span>`;
+    body.innerHTML = '';
+    if(items.length === 0){
+      body.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-muted); padding:1.5rem 0;">لسه مفيش محتوى</td></tr>';
+      return;
+    }
+    items.slice(0, 15).forEach(item => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${item.grade}</td><td><span class="badge badge-navy">${item.type}</span></td><td>${item.title}</td><td><a href="${item.link}" target="_blank" style="color:var(--sky);">فتح</a></td>`;
+      body.appendChild(tr);
+    });
+  } catch(err){
+    status.innerHTML = `<span class="status-err">⚠️ لسه رابط الشيت مش متظبط أو فيه مشكلة (${err.message})</span>`;
+    body.innerHTML = '';
+  }
+}
+document.getElementById('previewRefresh').addEventListener('click', loadPreview);
+loadPreview();
+</script>
+</body>
+</html>

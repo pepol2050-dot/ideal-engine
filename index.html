@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0F2D5C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>المتفوقين | منصة تعليمية متكاملة للعلوم والكيمياء</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="description" content="منصة المتفوقين التعليمية مع د. هدير يوسف — دروس، امتحانات، ومتابعة كاملة للعلوم والكيمياء من الرابعة الابتدائية للثالثة الإعدادية.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/design-system.css">
+<style>
+  /* ---- Page-specific ---- */
+  .hero{position:relative; padding-top:4.5rem; overflow:hidden;}
+  .hero::before{
+    content:''; position:absolute; top:-140px; left:-100px; width:480px; height:480px; border-radius:50%;
+    background:radial-gradient(circle, rgba(37,169,255,.22), transparent 70%); z-index:0;
+  }
+  .hero::after{
+    content:''; position:absolute; bottom:-160px; right:-120px; width:520px; height:520px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,138,0,.16), transparent 70%); z-index:0;
+  }
+  .hero-grid{position:relative; z-index:1; display:grid; grid-template-columns:1.05fr .95fr; gap:3rem; align-items:center;}
+  @media (max-width:940px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero h1{font-size:clamp(2.2rem,4.4vw,3.4rem); font-weight:900; color:var(--navy); line-height:1.35; margin-bottom:1.2rem;}
+  .hero h1 span{color:var(--sky);}
+  .hero p.lead{color:var(--text-muted); font-size:1.1rem; max-width:50ch; margin-bottom:2rem;}
+  .hero-actions{display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2.4rem;}
+  .hero-badges{display:flex; gap:.7rem; flex-wrap:wrap;}
+
+  .hero-visual{position:relative; height:420px;}
+  .float-card{position:absolute; padding:1.1rem 1.3rem;}
+  .fc1{top:0; right:20px; width:230px;}
+  .fc2{bottom:40px; left:0; width:210px;}
+  .fc3{top:150px; left:60px; width:180px;}
+  @media (max-width:640px){
+    .hero-visual{height:auto; display:flex; flex-direction:column; gap:.9rem; margin-top:1rem;}
+    .float-card{position:static; width:100% !important;}
+  }
+  .float-card .row{display:flex; align-items:center; gap:.7rem; margin-bottom:.5rem;}
+  .float-card .ic{width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0;}
+  .float-card b{font-size:.9rem;}
+  .float-card span{font-size:.72rem; color:var(--text-muted);}
+
+  .instructor{background:linear-gradient(155deg, var(--navy), var(--navy-2)); color:#fff; border-radius:28px; padding:3rem; display:grid; grid-template-columns:.7fr 1.3fr; gap:2.5rem; align-items:center;}
+  @media (max-width:860px){ .instructor{grid-template-columns:1fr; padding:2rem;} }
+  .instructor-photo{aspect-ratio:1; border-radius:22px; background:linear-gradient(160deg, rgba(37,169,255,.25), rgba(255,138,0,.2)); display:flex; align-items:center; justify-content:center; font-size:5rem;}
+  .instructor h3{font-size:1.6rem; margin-bottom:.4rem;}
+  .instructor p{color:rgba(255,255,255,.75); margin-bottom:1.2rem;}
+  .instructor .chips{display:flex; gap:.6rem; flex-wrap:wrap;}
+  .instructor .chips span{background:rgba(255,255,255,.1); padding:.4rem .9rem; border-radius:999px; font-size:.8rem;}
+
+  .grade-belt{display:flex; gap:.8rem; flex-wrap:wrap;}
+  .grade-pill{background:#fff; border:1px solid var(--line); padding:.6rem 1.2rem; border-radius:999px; font-size:.85rem; font-weight:700; color:var(--navy);}
+
+  .feature-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem;}
+  @media (max-width:900px){ .feature-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:600px){ .feature-grid{grid-template-columns:1fr;} }
+  .feature-card{padding:1.8rem;}
+  .feature-card .ic{width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin-bottom:1rem;}
+  .feature-card h3{font-size:1.05rem; margin-bottom:.5rem; color:var(--navy);}
+  .feature-card p{color:var(--text-muted); font-size:.9rem;}
+
+  .path-track{display:flex; gap:1rem; overflow-x:auto; padding-bottom:1rem;}
+  .path-step{min-width:220px; padding:1.4rem; position:relative;}
+  .path-step .n{font-family:'Poppins'; font-weight:700; color:var(--sky); font-size:.8rem; margin-bottom:.6rem;}
+  .path-step h4{color:var(--navy); margin-bottom:.4rem; font-size:.98rem;}
+  .path-step p{color:var(--text-muted); font-size:.85rem;}
+
+  .plans{display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem;}
+  @media (max-width:900px){ .plans{grid-template-columns:1fr;} }
+  .plan{padding:2rem; display:flex; flex-direction:column; gap:1rem;}
+  .plan.featured{background:linear-gradient(155deg, var(--navy), var(--navy-2)); color:#fff; transform:scale(1.03);}
+  .plan.featured .price, .plan.featured h3{color:#fff;}
+  .plan.featured p{color:rgba(255,255,255,.7);}
+  .plan h3{color:var(--navy); font-size:1.15rem;}
+  .plan .price{font-family:'Poppins'; font-size:2.1rem; font-weight:800; color:var(--navy);}
+  .plan .price span{font-size:.95rem; font-weight:500; color:var(--text-muted);}
+  .plan ul{display:flex; flex-direction:column; gap:.6rem; margin:.6rem 0 1rem;}
+  .plan ul li{font-size:.88rem; display:flex; gap:.5rem; align-items:flex-start;}
+
+  .cta-band{background:linear-gradient(120deg, var(--sky), var(--navy)); border-radius:28px; padding:3.5rem; text-align:center; color:#fff;}
+  .cta-band h2{font-size:1.9rem; margin-bottom:1rem;}
+  .cta-band p{color:rgba(255,255,255,.85); max-width:50ch; margin:0 auto 1.8rem;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap site-nav">
+    <a href="#top" class="brand">
+      <img src="assets/logo.svg" alt="شعار المتفوقين">
+      <div class="brand-text"><b>المتفوقين</b><span>منصة تعليمية متكاملة</span></div>
+    </a>
+    <nav class="site-links" id="navLinks">
+      <a href="#about">عن المنصة</a>
+      <a href="#features">المميزات</a>
+      <a href="#path">المراحل الدراسية</a>
+      <a href="#plans">الاشتراكات</a>
+      <a href="login.html">تسجيل الدخول ↗</a>
+      <a href="tel:01014930648" class="btn btn-orange btn-sm">01014930648</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="فتح القائمة">☰</button>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge badge-sky">منصة مصرية 100% للعلوم والكيمياء</span>
+        <h1 style="margin-top:1rem;">تفوّقك يبدأ من هنا<br><span>مع د. هدير يوسف</span></h1>
+        <p class="lead">دروس، امتحانات إلكترونية، ومتابعة أول بأول لطلاب الصف الرابع الابتدائي حتى الصف الثالث الإعدادي — بأسلوب حديث وممتع.</p>
+        <div class="hero-actions">
+          <a href="student-dashboard.html" class="btn btn-orange">ابدأ التجربة المجانية ⟵</a>
+          <a href="#about" class="btn btn-outline">تعرّف على المنصة</a>
+        </div>
+        <div class="hero-badges">
+          <span class="badge badge-navy">📚 العلوم</span>
+          <span class="badge badge-navy">🧪 الكيمياء</span>
+          <span class="badge badge-green">🔒 فيديوهات مشفّرة</span>
+          <span class="badge badge-orange">🤖 مساعد ذكاء اصطناعي</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="float-card glass fc1 reveal">
+          <div class="row"><span class="ic badge-sky">🔥</span><div><b>7 أيام متتالية</b><span>سلسلة المذاكرة</span></div></div>
+          <div class="progress"><span style="width:70%"></span></div>
+        </div>
+        <div class="float-card glass fc2 reveal">
+          <div class="row"><span class="ic badge-orange">🏆</span><div><b>+1,240 XP</b><span>نقاط الأسبوع</span></div></div>
+          <div class="row" style="margin:0;"><span class="ic badge-navy">🥇</span><div><b>الترتيب الثالث</b><span>على مستوى الصف</span></div></div>
+        </div>
+        <div class="float-card glass fc3 reveal">
+          <div class="row" style="margin:0;"><span class="ic badge-green">✅</span><div><b>امتحان الأحماض</b><span>النتيجة: 18 / 20</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / INSTRUCTOR -->
+  <section id="about">
+    <div class="wrap">
+      <div class="instructor reveal">
+        <div class="instructor-photo">👩‍🏫</div>
+        <div>
+          <span class="badge badge-sky" style="margin-bottom:.8rem;">المُحاضِرة الرئيسية</span>
+          <h3>د. هدير يوسف</h3>
+          <p>مدرّسة علوم وكيمياء بخبرة طويلة في تبسيط المناهج لطلاب المرحلتين الابتدائية والإعدادية، ومؤسِّسة منصة المتفوقين لتقديم تعليم عالي الجودة لكل طالب بغض النظر عن مكانه.</p>
+          <div class="chips">
+            <span>📞 01014930648</span>
+            <span>🎓 المرحلة الابتدائية والإعدادية</span>
+            <span>🧪 علوم · كيمياء</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">ليه المتفوقين</div>
+        <h2>كل حاجة محتاجها عشان تتفوق، في مكان واحد</h2>
+        <p>منصة متكاملة بمعايير عالمية، مبنية خصيصًا لطلاب العلوم والكيمياء في مصر.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="card hoverable feature-card reveal"><span class="ic badge-sky">🎬</span><h3>فيديوهات مشفّرة وآمنة</h3><p>بث تكيّفي، علامة مائية، ومنع للتحميل أو تسجيل الشاشة لحماية المحتوى.</p></div>
+        <div class="card hoverable feature-card reveal"><span class="ic badge-orange">🧠</span><h3>مساعد ذكاء اصطناعي</h3><p>يشرحلك أي جزء تعثرت فيه، ويقترح خطة مذاكرة شخصية بناءً على أدائك.</p></div>
+        <div class="card hoverable feature-card reveal"><span class="ic badge-green">📝</span><h3>بنك أسئلة ضخم</h3><p>اختيار من متعدد، صح وخطأ، أسئلة صور وفيديو، وتصحيح فوري بشرح مفصّل.</p></div>
+        <div class="card hoverable feature-card reveal"><span class="ic badge-navy">🎮</span><h3>نظام تحفيز وتحديات</h3><p>نقاط XP، عملات، شارات إنجاز، وتحديات يومية وأسبوعية تخلي المذاكرة ممتعة.</p></div>
+        <div class="card hoverable feature-card reveal"><span class="ic badge-sky">👨‍👩‍👧</span><h3>متابعة لولي الأمر</h3><p>تقرير شهري كامل عن الحضور والدرجات والواجبات مباشرة على لوحة ولي الأمر.</p></div>
+        <div class="card hoverable feature-card reveal"><span class="ic badge-orange">💳</span><h3>دفع مرن وآمن</h3><p>فودافون كاش، فوري، إنستاباي، وفيزا/ماستركارد — مع أكواد خصم لأولياء الأمور.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRADES / PATH -->
+  <section id="path" style="background:var(--gray-2);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">المراحل الدراسية</div>
+        <h2>من الرابعة الابتدائي للثالثة الإعدادي</h2>
+        <p>كل صف دراسي له مساره الخاص بالوحدات والدروس والامتحانات المناسبة له.</p>
+      </div>
+      <div class="grade-belt reveal" style="margin-bottom:2rem;">
+        <span class="grade-pill">4 ابتدائي</span>
+        <span class="grade-pill">5 ابتدائي</span>
+        <span class="grade-pill">6 ابتدائي</span>
+        <span class="grade-pill">1 إعدادي</span>
+        <span class="grade-pill">2 إعدادي</span>
+        <span class="grade-pill">3 إعدادي</span>
+      </div>
+      <div class="path-track reveal">
+        <div class="card path-step"><div class="n">01</div><h4>دروس ووحدات</h4><p>فيديو + ملزمة PDF + أنشطة تفاعلية لكل درس.</p></div>
+        <div class="card path-step"><div class="n">02</div><h4>واجب وتدريب</h4><p>تطبيق مباشر بعد كل درس لتثبيت الفهم.</p></div>
+        <div class="card path-step"><div class="n">03</div><h4>اختبار قصير</h4><p>Quiz سريع بالتصحيح الفوري والشرح.</p></div>
+        <div class="card path-step"><div class="n">04</div><h4>امتحان الوحدة</h4><p>تقييم شامل بمستويات صعوبة متدرجة.</p></div>
+        <div class="card path-step"><div class="n">05</div><h4>مراجعة نهائية</h4><p>جلسة مراجعة مباشرة قبل امتحان المدرسة.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section id="plans">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">الاشتراكات</div>
+        <h2>خطة تناسب كل طالب</h2>
+        <p>ابدأ مجانًا، وارقّي اشتراكك وقت ما تحتاج مميزات أكتر.</p>
+      </div>
+      <div class="plans">
+        <div class="card plan reveal">
+          <h3>مجاني</h3>
+          <div class="price">0 <span>ج.م / شهر</span></div>
+          <ul>
+            <li>✅ دروس تجريبية مختارة</li>
+            <li>✅ 3 امتحانات إلكترونية شهريًا</li>
+            <li>✅ الوصول للوحة الطالب الأساسية</li>
+          </ul>
+          <a href="student-dashboard.html" class="btn btn-outline btn-block">ابدأ الآن</a>
+        </div>
+        <div class="card plan featured reveal">
+          <span class="badge badge-orange" style="align-self:flex-start;">الأكثر طلبًا</span>
+          <h3>الترم الكامل</h3>
+          <div class="price">150 <span>ج.م / ترم</span></div>
+          <ul>
+            <li>✅ كل الدروس والوحدات</li>
+            <li>✅ امتحانات غير محدودة</li>
+            <li>✅ مساعد الذكاء الاصطناعي</li>
+            <li>✅ تقرير شهري لولي الأمر</li>
+          </ul>
+          <a href="#" class="btn btn-orange btn-block">اشترك الآن</a>
+        </div>
+        <div class="card plan reveal">
+          <h3>سنوي</h3>
+          <div class="price">450 <span>ج.م / سنة</span></div>
+          <ul>
+            <li>✅ كل مميزات الترم الكامل</li>
+            <li>✅ حلقات مراجعة مباشرة</li>
+            <li>✅ شهادات إتمام معتمدة</li>
+          </ul>
+          <a href="#" class="btn btn-outline btn-block">اشترك الآن</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>جاهز تبدأ رحلة التفوق؟</h2>
+        <p>سجّل دلوقتي واحصل على أول 3 دروس مجانًا مع د. هدير يوسف.</p>
+        <a href="student-dashboard.html" class="btn" style="background:#fff; color:var(--navy);">سجّل مجانًا ⟵</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="active"><span class="ic">🏠</span><span>الرئيسية</span></a>
+  <a href="#features"><span class="ic">⭐</span><span>المميزات</span></a>
+  <a href="login.html" class="fab"><span class="ic">🔑</span></a>
+  <a href="#plans"><span class="ic">💳</span><span>الاشتراك</span></a>
+  <a href="tel:01014930648"><span class="ic">📞</span><span>اتصال</span></a>
+</nav>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:1rem;">
+          <img src="assets/logo.svg" alt="شعار المتفوقين" style="width:38px;height:38px;">
+          <div class="brand-text"><b style="color:#fff;">المتفوقين</b><span>منصة تعليمية متكاملة للعلوم والكيمياء</span></div>
+        </div>
+        <p style="font-size:.85rem;">مع د. هدير يوسف · 📞 01014930648</p>
+      </div>
+      <div><h4>المنصة</h4><a href="#about">عن المنصة</a><a href="#features">المميزات</a><a href="#plans">الاشتراكات</a></div>
+      <div><h4>اللوحات</h4><a href="student-dashboard.html">لوحة الطالب</a><a href="teacher-dashboard.html">لوحة المعلم</a><a href="parent-dashboard.html">لوحة ولي الأمر</a><a href="admin-dashboard.html">لوحة الأدمن</a></div>
+      <div><h4>الدعم</h4><a href="tel:01014930648">اتصل بنا</a><a href="#">الأسئلة الشائعة</a><a href="#">سياسة الخصوصية</a></div>
+    </div>
+    <div class="foot-bottom">© <span id="year"></span> المتفوقين — جميع الحقوق محفوظة.</div>
+  </div>
+</footer>
+
+<script>
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('service-worker.js').catch(() => {}); }
+document.getElementById('year').textContent = new Date().getFullYear();
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

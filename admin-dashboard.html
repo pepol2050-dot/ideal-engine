@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة الأدمن | المتفوقين</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/design-system.css">
+<style>
+  .panel{padding:1.5rem;}
+  .panel-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:1.2rem;}
+  .panel-head h3{color:var(--navy); font-size:1.05rem;}
+  .panel-head a{font-size:.82rem; color:var(--sky); font-weight:700;}
+  table{width:100%; border-collapse:collapse;}
+  th,td{text-align:right; padding:.75rem .5rem; font-size:.86rem; border-bottom:1px solid var(--line);}
+  th{color:var(--text-muted); font-weight:700; font-size:.76rem;}
+  tr:last-child td{border-bottom:none;}
+  .grid-2{display:grid; grid-template-columns:1.4fr 1fr; gap:1.5rem; margin-bottom:1.5rem;}
+  @media (max-width:1050px){ .grid-2{grid-template-columns:1fr;} }
+  .bar-chart{display:flex; align-items:flex-end; gap:.7rem; height:160px; padding-top:1rem;}
+  .bar{flex:1; background:linear-gradient(180deg, var(--orange), var(--navy)); border-radius:8px 8px 0 0; position:relative;}
+  .bar span{position:absolute; bottom:-22px; right:0; left:0; text-align:center; font-size:.7rem; color:var(--text-muted);}
+  .ticket-row{display:flex; align-items:center; gap:.8rem; padding:.8rem 0; border-bottom:1px solid var(--line);}
+  .ticket-row:last-child{border-bottom:none;}
+  .ticket-row b{display:block; font-size:.86rem;}
+  .ticket-row span{font-size:.76rem; color:var(--text-muted);}
+</style>
+</head>
+<body>
+<div class="dash">
+  <aside class="dash-sidebar" id="sidebar">
+    <div class="brand">
+      <img src="assets/logo.svg" alt="المتفوقين" style="width:40px;height:40px;">
+      <div class="brand-text"><b>المتفوقين</b><span>لوحة الأدمن</span></div>
+    </div>
+    <nav class="dash-nav">
+      <a href="#" class="active">🏠 نظرة عامة</a>
+      <a href="#">👥 المستخدمين</a>
+      <a href="#">👩‍🏫 المعلمين</a>
+      <a href="#">👩‍🎓 الطلاب</a>
+      <a href="#">👨‍👩‍👧 أولياء الأمور</a>
+      <div class="group-label">الاشتراكات</div>
+      <a href="#">💳 الاشتراكات</a>
+      <a href="#">💰 المدفوعات</a>
+      <a href="#">🏷️ أكواد الخصم</a>
+      <div class="group-label">النظام</div>
+      <a href="#">📊 التحليلات</a>
+      <a href="#">📄 التقارير</a>
+      <a href="#">🎫 تذاكر الدعم</a>
+      <a href="#">🖋️ إدارة المحتوى</a>
+      <a href="#">🔒 سجلات الأمان</a>
+      <div class="group-label">حساب</div>
+      <a href="index.html">↩ الرئيسية العامة</a>
+    </nav>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-topbar">
+      <button class="menu-btn" id="menuBtn" style="display:none;">☰</button>
+      <div class="dash-search"><span>🔍</span><input placeholder="ابحث عن مستخدم، معاملة، أو تذكرة..."></div>
+      <div class="dash-user">
+        <button class="icon-btn">🔔<span class="dot"></span></button>
+        <div class="avatar">A</div>
+      </div>
+    </div>
+
+    <div class="stat-grid" style="margin-bottom:1.5rem;">
+      <div class="card stat-card"><div class="top"><span class="ic badge-sky">👥</span></div><b>24,680</b><span>إجمالي المستخدمين</span></div>
+      <div class="card stat-card"><div class="top"><span class="ic badge-green">💰</span></div><b>318,450 ج.م</b><span>إيراد هذا الشهر</span></div>
+      <div class="card stat-card"><div class="top"><span class="ic badge-orange">💳</span></div><b>6,120</b><span>اشتراك نشط</span></div>
+      <div class="card stat-card"><div class="top"><span class="ic badge-navy">🎫</span></div><b>14</b><span>تذكرة دعم مفتوحة</span></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card panel">
+        <div class="panel-head"><h3>📊 نمو الإيرادات (آخر 7 أشهر)</h3></div>
+        <div class="bar-chart">
+          <div class="bar" style="height:40%"><span>يناير</span></div>
+          <div class="bar" style="height:52%"><span>فبراير</span></div>
+          <div class="bar" style="height:48%"><span>مارس</span></div>
+          <div class="bar" style="height:65%"><span>أبريل</span></div>
+          <div class="bar" style="height:70%"><span>مايو</span></div>
+          <div class="bar" style="height:82%"><span>يونيو</span></div>
+          <div class="bar" style="height:95%"><span>يوليو</span></div>
+        </div>
+      </div>
+      <div class="card panel">
+        <div class="panel-head"><h3>🎫 آخر تذاكر الدعم</h3><a href="#">عرض الكل</a></div>
+        <div class="ticket-row"><span class="badge badge-orange">مفتوحة</span><div><b>مشكلة في تشغيل فيديو</b><span>ولي أمر — منذ ساعتين</span></div></div>
+        <div class="ticket-row"><span class="badge badge-sky">قيد المعالجة</span><div><b>استفسار عن فاتورة اشتراك</b><span>طالبة — منذ 5 ساعات</span></div></div>
+        <div class="ticket-row"><span class="badge badge-green">تم الحل</span><div><b>مشكلة تسجيل دخول</b><span>معلم — أمس</span></div></div>
+      </div>
+    </div>
+
+    <div class="card panel">
+      <div class="panel-head"><h3>👥 آخر المستخدمين المسجّلين</h3><a href="#">عرض الكل</a></div>
+      <table>
+        <thead><tr><th>الاسم</th><th>الدور</th><th>الصف/التخصص</th><th>تاريخ التسجيل</th><th>الحالة</th></tr></thead>
+        <tbody>
+          <tr><td>سارة أحمد</td><td>طالبة</td><td>3 إعدادي</td><td>13 يوليو 2026</td><td><span class="badge badge-green">نشط</span></td></tr>
+          <tr><td>د. هدير يوسف</td><td>معلمة</td><td>علوم وكيمياء</td><td>1 يناير 2026</td><td><span class="badge badge-green">نشط</span></td></tr>
+          <tr><td>كريم خالد</td><td>ولي أمر</td><td>—</td><td>12 يوليو 2026</td><td><span class="badge badge-green">نشط</span></td></tr>
+          <tr><td>عمر سيد</td><td>طالب</td><td>1 إعدادي</td><td>10 يوليو 2026</td><td><span class="badge badge-orange">قيد التفعيل</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<script>
+document.getElementById('menuBtn')?.addEventListener('click', () => document.getElementById('sidebar').classList.toggle('open'));
+</script>
+</body>
+</html>

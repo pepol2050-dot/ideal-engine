@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة الطالب | المتفوقين</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/design-system.css">
+<style>
+  .welcome-banner{
+    background:linear-gradient(135deg, var(--navy), var(--navy-2)); color:#fff; border-radius:var(--radius-lg);
+    padding:2rem 2.2rem; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap;
+    margin-bottom:1.6rem; position:relative; overflow:hidden;
+  }
+  .welcome-banner::after{content:''; position:absolute; left:-40px; bottom:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(37,169,255,.35), transparent 70%);}
+  .welcome-banner h2{font-size:1.5rem; margin-bottom:.4rem; position:relative;}
+  .welcome-banner p{color:rgba(255,255,255,.75); position:relative;}
+  .welcome-stats{display:flex; gap:1.4rem; position:relative;}
+  .welcome-stat{text-align:center;}
+  .welcome-stat b{display:block; font-family:'Poppins'; font-size:1.4rem;}
+  .welcome-stat span{font-size:.72rem; color:rgba(255,255,255,.65);}
+
+  .grid-2-1{display:grid; grid-template-columns:2fr 1fr; gap:1.5rem; margin-bottom:1.5rem;}
+  @media (max-width:1050px){ .grid-2-1{grid-template-columns:1fr;} }
+
+  .panel{padding:1.5rem;}
+  .panel-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:1.2rem;}
+  .panel-head h3{color:var(--navy); font-size:1.05rem;}
+  .panel-head a{font-size:.82rem; color:var(--sky); font-weight:700;}
+
+  .lesson-row{display:flex; align-items:center; gap:1rem; padding:.9rem 0; border-bottom:1px solid var(--line);}
+  .lesson-row:last-child{border-bottom:none;}
+  .lesson-row .th{width:52px; height:52px; border-radius:12px; background:var(--gray-2); display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0;}
+  .lesson-row .info{flex:1; min-width:0;}
+  .lesson-row .info b{display:block; font-size:.92rem;}
+  .lesson-row .info span{font-size:.76rem; color:var(--text-muted);}
+
+  .achv-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem;}
+  @media (max-width:600px){ .achv-grid{grid-template-columns:repeat(2,1fr);} }
+  .achv{text-align:center; padding:1rem .5rem; border-radius:14px; background:var(--gray-2);}
+  .achv.locked{opacity:.4;}
+  .achv .ic{font-size:1.8rem; margin-bottom:.4rem;}
+  .achv span{font-size:.72rem; color:var(--text-muted); display:block;}
+
+  .lb-row{display:flex; align-items:center; gap:.8rem; padding:.7rem 0; border-bottom:1px solid var(--line);}
+  .lb-row:last-child{border-bottom:none;}
+  .lb-rank{width:26px; height:26px; border-radius:50%; background:var(--gray-2); display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:800; color:var(--navy);}
+  .lb-row.me{background:rgba(37,169,255,.08); border-radius:12px; padding:.7rem .8rem; border-bottom:none;}
+  .lb-name{flex:1; font-size:.88rem; font-weight:600;}
+  .lb-xp{font-size:.8rem; color:var(--text-muted); font-family:'Poppins';}
+
+  .calendar-mini{display:grid; grid-template-columns:repeat(7,1fr); gap:.4rem; text-align:center;}
+  .calendar-mini span{font-size:.7rem; color:var(--text-muted); padding:.3rem 0;}
+  .calendar-mini .day{font-size:.8rem; padding:.5rem 0; border-radius:8px; background:var(--gray-2);}
+  .calendar-mini .day.active{background:var(--sky); color:#fff; font-weight:700;}
+  .calendar-mini .day.today{outline:2px solid var(--orange);}
+</style>
+</head>
+<body>
+<div class="dash">
+  <aside class="dash-sidebar" id="sidebar">
+    <div class="brand">
+      <img src="assets/logo.svg" alt="المتفوقين" style="width:40px;height:40px;">
+      <div class="brand-text"><b>المتفوقين</b><span>لوحة الطالب</span></div>
+    </div>
+    <nav class="dash-nav">
+      <a href="#" class="active">🏠 الرئيسية</a>
+      <a href="#">📅 دروس اليوم</a>
+      <a href="#">📝 الواجبات</a>
+      <a href="#">🧾 الامتحانات</a>
+      <a href="#">📊 الدرجات</a>
+      <a href="#">📈 التقدّم</a>
+      <div class="group-label">التحفيز</div>
+      <a href="#">🏅 الإنجازات</a>
+      <a href="#">🏆 لوحة الصدارة</a>
+      <a href="#">📌 المحفوظات</a>
+      <a href="#">🎓 الشهادات</a>
+      <div class="group-label">أدوات</div>
+      <a href="#">🗓️ خطة المذاكرة</a>
+      <a href="#">🤖 المساعد الذكي</a>
+      <a href="#">🔔 الإشعارات</a>
+      <a href="#">📆 التقويم</a>
+      <a href="#">✅ الحضور</a>
+      <div class="group-label">حساب</div>
+      <a href="index.html">↩ الرئيسية العامة</a>
+    </nav>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-topbar">
+      <button class="menu-btn" id="menuBtn" style="display:none;">☰</button>
+      <div class="dash-search"><span>🔍</span><input placeholder="ابحث عن درس، واجب، أو امتحان..."></div>
+      <div class="dash-user">
+        <button class="icon-btn">🔔<span class="dot"></span></button>
+        <button class="icon-btn">✉️</button>
+        <div class="avatar">س</div>
+      </div>
+    </div>
+
+    <div class="welcome-banner">
+      <div>
+        <h2>أهلًا سارة 👋</h2>
+        <p>عندك درسين ومهمة واحدة النهاردة — يلا نكمّل السلسلة!</p>
+      </div>
+      <div class="welcome-stats">
+        <div class="welcome-stat"><b>🔥 7</b><span>أيام متتالية</span></div>
+        <div class="welcome-stat"><b>1,240</b><span>نقطة XP</span></div>
+        <div class="welcome-stat"><b>85</b><span>عملة</span></div>
+        <div class="welcome-stat"><b>#3</b><span>ترتيبك بالصف</span></div>
+      </div>
+    </div>
+
+    <div class="grid-2-1">
+      <div class="card panel">
+        <div class="panel-head"><h3>📅 دروس اليوم</h3><a href="#">عرض الكل</a></div>
+        <div class="lesson-row">
+          <div class="th">🧪</div>
+          <div class="info"><b>الأحماض والقواعد — الدرس الثالث</b><span>كيمياء · 3 إعدادي · 25 دقيقة</span></div>
+          <a href="#" class="btn btn-orange btn-sm">ابدأ</a>
+        </div>
+        <div class="lesson-row">
+          <div class="th">🔬</div>
+          <div class="info"><b>خلايا النبات مقابل الحيوان</b><span>علوم · 3 إعدادي · 20 دقيقة</span></div>
+          <a href="#" class="btn btn-outline btn-sm">استكمال</a>
+        </div>
+        <div class="lesson-row">
+          <div class="th">📄</div>
+          <div class="info"><b>واجب: موازنة المعادلات الكيميائية</b><span>تسليم قبل الساعة 8 مساءً</span></div>
+          <a href="#" class="btn btn-outline btn-sm">فتح</a>
+        </div>
+      </div>
+
+      <div class="card panel">
+        <div class="panel-head"><h3>📆 حضورك هذا الأسبوع</h3></div>
+        <div class="calendar-mini">
+          <span>سبت</span><span>أحد</span><span>إثنين</span><span>ثلاثاء</span><span>أربعاء</span><span>خميس</span><span>جمعة</span>
+          <div class="day active">✓</div><div class="day active">✓</div><div class="day active">✓</div>
+          <div class="day active today">✓</div><div class="day">-</div><div class="day">-</div><div class="day">-</div>
+        </div>
+        <div class="panel-head" style="margin-top:1.4rem;"><h3 style="font-size:.95rem;">📈 نسبة إنجاز المنهج</h3></div>
+        <div class="progress" style="margin-bottom:.4rem;"><span style="width:62%"></span></div>
+        <span style="font-size:.78rem; color:var(--text-muted);">62% من منهج الترم الأول</span>
+      </div>
+    </div>
+
+    <div class="grid-2-1">
+      <div class="card panel">
+        <div class="panel-head"><h3>🏅 الإنجازات</h3><a href="#">عرض الكل</a></div>
+        <div class="achv-grid">
+          <div class="achv"><div class="ic">🥇</div><span>أول امتحان</span></div>
+          <div class="achv"><div class="ic">🔥</div><span>7 أيام متتالية</span></div>
+          <div class="achv"><div class="ic">🧪</div><span>خبير الكيمياء</span></div>
+          <div class="achv locked"><div class="ic">🏆</div><span>بطل الترم</span></div>
+        </div>
+      </div>
+      <div class="card panel">
+        <div class="panel-head"><h3>🏆 لوحة الصدارة</h3></div>
+        <div class="lb-row"><span class="lb-rank">1</span><span class="lb-name">يوسف عادل</span><span class="lb-xp">1,860 XP</span></div>
+        <div class="lb-row"><span class="lb-rank">2</span><span class="lb-name">مريم سامي</span><span class="lb-xp">1,510 XP</span></div>
+        <div class="lb-row me"><span class="lb-rank">3</span><span class="lb-name">سارة (أنتِ)</span><span class="lb-xp">1,240 XP</span></div>
+        <div class="lb-row"><span class="lb-rank">4</span><span class="lb-name">علي حسن</span><span class="lb-xp">1,180 XP</span></div>
+      </div>
+    </div>
+
+    <div class="card panel">
+      <div class="panel-head"><h3>🧾 الامتحانات القادمة</h3><a href="#">عرض الكل</a></div>
+      <div class="lesson-row">
+        <div class="th">📘</div>
+        <div class="info"><b>امتحان الوحدة الثانية — العلوم</b><span>الأحد القادم · 15 سؤال · 20 دقيقة</span></div>
+        <span class="badge badge-orange">بعد 3 أيام</span>
+      </div>
+      <div class="lesson-row">
+        <div class="th">🧪</div>
+        <div class="info"><b>امتحان منتصف الترم — الكيمياء</b><span>بعد أسبوعين · 25 سؤال · 35 دقيقة</span></div>
+        <span class="badge badge-navy">مجدول</span>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+document.getElementById('menuBtn')?.addEventListener('click', () => document.getElementById('sidebar').classList.toggle('open'));
+</script>
+</body>
+</html>
